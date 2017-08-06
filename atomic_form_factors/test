@@ -1,0 +1,500 @@
+   44  ls
+   45  ls *.ppm
+   46  open .
+   47  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   48  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   49  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   50  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   51  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   52  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   53  ffmpeg -framerate 24 -i opening_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" opening_large.mp4
+   54  cd ../../pmpro_closing/large/
+   55  ls
+   56  ffmpeg -framerate 24 -i closure_large.%05d.ppm -c:v libx264 -r 24 -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" closure_large.mp4
+   57  rm *.dat
+   58  cd ../../
+   59  ls
+   60  cd ppdoo_opening/large/
+   61  ls
+   62  rm *.dat
+   63  rm *.ppm
+   64  cd ../../pmpro_closing/large/
+   65  rm *.ppm
+   66  pwd
+   67  ls
+   68  cd 
+   69  ls
+   70  cd temp/
+   71  ls
+   72  cd ../work/
+   73  ls
+   74  cd CcO/
+   75  ls
+   76  cd movies/
+   77  ls
+   78  cd opening/
+   79  ls
+   80  cd ../
+   81  ls
+   82  mkdir pmpro_opening
+   83  cd pmpro_opening/
+   84  ls
+   85  mkdir large
+   86  cd large/
+   87  ls
+   88  pwd
+   89  ls
+   90  pwd
+   91  cd ../../
+   92  ls
+   93  cd ppdoo_opening/large/
+   94  ls
+   95  ls
+   96  pwd
+   97  exit
+   98  mkdir traj
+   99  mkdir map
+  100  mkdir img
+  101  ls
+  102  ls img/
+  103  open img/wat_msm_nstat0030.png 
+  104  vi traj/cluster_nstat0030 
+  105  vi traj/traj_nstat0030.npy 
+  106  vi map/map_nstat0030.dat 
+  107  vi watPosListTime.dat 
+  108  vi ../watPosList.dat 
+  109  ls map/
+  110  vi map/map_nstat0005.dat 
+  111  open img/wat_msm_nstat0005.png 
+  112  open img/wat_msm_nstat0010.png 
+  113  open img/wat_msm_nstat0030.png 
+  114  ls
+  115  ll
+  116  ls -ltr img/
+  117  ls -ltr map/
+  118  date
+  119  date
+  120  ls -ltr map/
+  121  pwd
+  122  ls map/
+  123  ls
+  124  pwd
+  125  ls traj/
+  126  ls
+  127  ls traj/
+  128  vi traj/cliine_grpbc_dz2_nstat0035.xyz 
+  129  pwd
+  130  vi traj/cliine_grpbc_dz2_nstat0035.xyz
+  131  vmd traj/cliine_grpbc_dz2_nstat0035.xyz 
+  132  ls
+  133  ls traj/
+  134  vi traj/cliine_grpbc_dz2_nstat0035.xyz 
+  135  ls ../traj/
+  136  ls ../traj/cline_grp1_dz2.xyz 
+  137  vi ../traj/cline_grp1_dz2.xyz 
+  138  cd traj/
+  139  ls
+  140  mv cliine_grpbc_dz2_nstat0035.xyz cline_grpbc_dz2_n35.xyz
+  141  vmd cline_grpbc_dz2_n35.xyz 
+  142  vmd ../../traj/cline_grp1_dz2.xyz 
+  143  vmd cline_grpbc_dz2_n35.xyz 
+  144  pwd
+  145  ls
+  146  vi cline_grpbc_dz2_n35.xyz 
+  147  cp cline_grpbc_dz2_n35.xyz cline_grpbc_dz2_n35_end14.xyz 
+  148  vi cline_grpbc_dz2_n35.xyz 
+  149  ls
+  150  vi center_nstat0035.dat 
+  151  vi cline_grpbc_dz2_n35.xyz 
+  152  vi cline_grpbc_dz2_n35.xyz 
+  153  vi cline_grpbc_dz2_n35.xyz 
+  154  vi cline_grpbc_dz2_n35.xyz 
+  155  vi cline_grpbc_dz2_n35.xyz 
+  156  vi cline_grpbc_dz2_n35.xyz 
+  157  vi cline_grpbc_dz2_n35.xyz 
+  158  cp cline_grpbc_dz2_n35.xyz cline_grpbc_dz3_n35.xyz
+  159  vi cline_grpbc_dz2_n35.xyz 
+  160  vi cline_grpbc_dz3_n35.xyz 
+  161  plt.ion() plt.clf()
+  162  fig = plt.figure()
+  163  def update_ticks(matshow, imgfilename, fig)
+  164      fig.clf()     ax = fig.add_subplot('111')
+  165      plt.imshow(matshow,interpolation='nearest')
+  166      ax.imshow(matshow,interpolation='nearest')
+  167      ticks = ['HC', 'A-purple','A-orange','B-magenta', 'B-white', 'C-red', 'C-violet']
+  168      tickcolors = ['green','purple','orange','magenta','white','red','violet']
+  169      ax.set_xticks(range(len(ticks)),ticks)
+  170      ax.set_yticks(range(len(ticks)),ticks)
+  171      plt.xticks(range(len(ticks)),ticks)
+  172      plt.yticks(range(len(ticks)),ticks)
+  173      for i in range(len(ax.xaxis.get_major_ticks())):
+  174          xtick = ax.xaxis.get_major_ticks()[i]
+  175          ytick = ax.yaxis.get_major_ticks()[i]
+  176          xtick.label.set_color(tickcolors[i])
+  177          xtick.label.set_text(ticks[i])
+  178          ytick.label.set_color(tickcolors[i])
+  179          xtick.label.set_rotation('vertical')
+  180      plt.colorbar()     plt.savefig(imgfilename, facecolor=fig.get_facecolor(), edgecolor='none', bbox_inches='tight')
+  181      
+  182  plt.ion() plt.clf()
+  183  fig = plt.figure()
+  184  def update_ticks(matshow, imgfilename, fig):
+  185      fig.clf()     ax = fig.add_subplot('111')
+  186      plt.imshow(matshow,interpolation='nearest')
+  187      ax.imshow(matshow,interpolation='nearest')
+  188      ticks = ['HC', 'A-purple','A-orange','B-magenta', 'B-white', 'C-red', 'C-violet']
+  189      tickcolors = ['green','purple','orange','magenta','white','red','violet']
+  190      ax.set_xticks(range(len(ticks)),ticks)
+  191      ax.set_yticks(range(len(ticks)),ticks)
+  192      plt.xticks(range(len(ticks)),ticks)
+  193      plt.yticks(range(len(ticks)),ticks)
+  194      for i in range(len(ax.xaxis.get_major_ticks())):
+  195          xtick = ax.xaxis.get_major_ticks()[i]
+  196          ytick = ax.yaxis.get_major_ticks()[i]
+  197          xtick.label.set_color(tickcolors[i])
+  198          xtick.label.set_text(ticks[i])
+  199          ytick.label.set_color(tickcolors[i])
+  200          xtick.label.set_rotation('vertical')
+  201      plt.colorbar()     plt.savefig(imgfilename, facecolor=fig.get_facecolor(), edgecolor='none', bbox_inches='tight')
+  202      
+  203  ls
+  204  pwd
+  205  exit
+  206  cd ../
+  207  ls
+  208  cd ppdoo_popc/xtal_solvate/
+  209  ls
+  210  cd MDRun/
+  211  ls
+  212  ls *.trr
+  213  ls
+  214  ls
+  215  pwd
+  216  ls ../
+  217  ls ../EQ
+  218  cd
+  219  ls
+  220  cd backup
+  221  ls
+  222  cd CcO/
+  223  ls
+  224  cd gromacs
+  225  ls
+  226  cd ../gromacs_new/
+  227  ls
+  228  cd ppdoo_popc/
+  229  ls
+  230  cd xtal_
+  231  cd xtal_solvate/
+  232  ls
+  233  cd MDRun/
+  234  ls
+  235  pwd
+  236  ls
+  237  vmd ppdoo_xtal_solvate_eq.gro ppdoo_xtal_solvate_eq.trr ppdoo_xtal_solvate_12ns.trr ppdoo_xtal_solvate_25ns.trr ppdoo_xtal_solvate_37ns.trr ppdoo_xtal_solvate_50ns.trr 
+  238  vmd ppdoo_xtal_solvate_eq.gro ppdoo_xtal_solvate_eq.trr ppdoo_xtal_solvate_12ns.trr ppdoo_xtal_solvate_25ns.trr ppdoo_xtal_solvate_37ns.trr ppdoo_xtal_solvate_50ns.trr 
+  239  pwd
+  240  ls
+  241  exit
+  242  ls
+  243  cd
+  244  ls
+  245  cd work/
+  246  ls
+  247  cd CcO/movies/
+  248  ls
+  249  cd ppdoo_opening/
+  250  ls
+  251  cd small/
+  252  ls
+  253  ls -l opening_small.00000.ppm 
+  254  ls -l orig.opening_small.00000.ppm 
+  255  mv orig.opening_small.00000.ppm opening_small.00000.ppm 
+  256  ls
+  257  exit
+  258  cd
+  259  cd Dropbox/projects/CcO/
+  260  ls
+  261  cd water_density/
+  262  ls
+  263  cd ppdoo_close_to_open/
+  264  ls
+  265  cd ../
+  266  cd pmr_open_to_close
+  267  ls
+  268  vi channels_ABC.vmd 
+  269  vi channels_ABC.vmd 
+  270  ls *.vmd
+  271  ls
+  272  cd traj
+  273  ls
+  274  vmd cline_pmr.gro 
+  275  vmd ../channels_ABC.vmd 
+  276  pwd
+  277  cd 
+  278  cd work/
+  279  ls
+  280  cd Junsoo/
+  281  ls
+  282  du -ch
+  283  exit
+  284  ls
+  285  cp traj/cline_dz3.xyz .
+  286  vi cline_dz3.xyz 
+  287  vi centerline.py 
+  288  ls
+  289  vi ~/.ssh/config 
+  290  ssh -X JHC@203.255.181.199
+  291  ls
+  292  cd
+  293  ls
+  294  cd work/
+  295  ls
+  296  mkdir Junsoo
+  297  cd Junsoo/
+  298  ls
+  299  rsync -atvzh JHC@203.255.181.199:/home/JHC/X_curves_analysis .
+  300  ls
+  301  exit
+  302  ls
+  303  cd backup_chtc
+  304  s
+  305  cd CcO/gromacs_new/
+  306  ls
+  307  cd pmpro_from_ppdoo_rerun/
+  308  ls
+  309  cd MDRun/
+  310  ls
+  311  gnuplot 
+  312  exit
+  313  e
+  314  ls
+  315  mkdir test
+  316  cd test
+  317  ls
+  318  pwd
+  319  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/mix/400K/*.pdb .
+  320  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/mix/400K/*ns.dcd .
+  321  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  322  ls
+  323  mkdir 400K
+  324  mkdir 500K
+  325  mv * 400K/
+  326  mv 400K/500K/ .
+  327  ls
+  328  cd 500K/
+  329  ls
+  330  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/500K/*ns.dcd .
+  331  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/500K/*.pdb .
+  332  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  333  ls
+  334  cd ../
+  335  ls
+  336  mkdir 600K
+  337  cd 600K/
+  338  ls
+  339  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/600K/*.pdb .
+  340  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/600K/*ns.dcd .
+  341  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  342  ls
+  343  pwd
+  344  ls
+  345  cd ../
+  346  ls
+  347  sftp hjung52@chtc
+  348  ls
+  349  cd 600K/
+  350  ls
+  351  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  352  ls
+  353  cd ../500K/
+  354  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  355  cd ../400K/
+  356  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  357  ls
+  358  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/400K/*ns.dcd .
+  359  scp cson@euler:/srv/home/cson/work/IonicLiquid/lcst/bmimbf4_peo/q55/peo10/sep/400K/*.pdb .
+  360  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  361  vmd min.pdb eq_npt_ns.dcd md_nvt_ns.dcd 
+  362  ls
+  363  exit
+  364  c2
+  365  cd util/
+  366  ls
+  367  cd trj_analysis/
+  368  ls
+  369  cd ../
+  370  ls
+  371  find . -name '*.py'
+  372  cd ../
+  373  ls
+  374  cd program/utility/
+  375  ls
+  376  cd trj_analysis/
+  377  ls
+  378  find . -name '*.py'
+  379  cd 
+  380  cd backup_chtc
+  381  ls
+  382  cd CcO/
+  383  ls
+  384  cd find_hbond/
+  385  ls
+  386  cd ../
+  387  ls
+  388  cd gromacs_new/
+  389  ls
+  390  cd pmpro_from_ppdoo_rerun/
+  391  ls
+  392  cd trjanal/
+  393  ls
+  394  cd wat_density/
+  395  ls
+  396  cd ../watflux/
+  397  ls
+  398  vi centerline.py 
+  399  vi centerline_procs.py 
+  400  ls
+  401  cd CcO/
+  402  ls
+  403  rsync -atvzh scychon@comet:/oasis/scratch/comet/scychon/temp_project/CcO/gromacs_new/charmm36.ff .
+  404  open .
+  405  ls
+  406  pwd
+  407  cd
+  408  ls
+  409  cd backup_chtc
+  410  ls
+  411  cd CcO/gromacs_new/
+  412  ls
+  413  cd charmm36.ff/
+  414  ls
+  415  cd ../
+  416  ls
+  417  cd 
+  418  ls
+  419  cd mirror_cco
+  420  ls
+  421  cd gromacs_new/
+  422  ls
+  423  cd pmpro_dpdro/
+  424  ls
+  425  cd xtal_solvate/
+  426  ls
+  427  vi run.sh 
+  428  vi dpdoo_popc.top 
+  429  cd ../../
+  430  ls
+  431  cd charmm36.ff/
+  432  ls
+  433  exit
+  434  c
+  435  exit
+  436  cd 
+  437  cd mirror_cco
+  438  ls
+  439  cd gromacs
+  440  ls
+  441  cd ../gromacs_new/
+  442  ls
+  443  cd 
+  444  cd backup_chtc
+  445  ls
+  446  cd CcO/
+  447  ls
+  448  cd btype/
+  449  ls
+  450  cd charmm36.ff/
+  451  ls
+  452  ls -ltr
+  453  vi cco_pr_chain_A_chrm22.itp 
+  454  vi cco_pr_chain_A.itp 
+  455  ls -ltrh
+  456  vi cco_pr_chain_A.itp 
+  457  diff cco_pr_chain_A.itp cco_pr_chain_A_chrm22.itp 
+  458  ls
+  459  cd ../
+  460  ls
+  461  cd bcco_pr/
+  462  ls
+  463  vi bcco_pr.top 
+  464  cd ../
+  465  ls
+  466  open .
+  467  open .
+  468  ㅔㅈ
+  469  ㅇ
+  470  pwd
+  471  ls
+  472  cd ../
+  473  cd gromacs_new/
+  474  ls
+  475  cd charmm36.ff/
+  476  ls
+  477  ls -ltrh
+  478  pwd
+  479  cd
+  480  cd mirror_cco
+  481  ls
+  482  cd gromacs
+  483  cd ../gromacs_new/
+  484  ls
+  485  cd charmm36.ff/
+  486  ls
+  487  ls -ltrh
+  488  cd
+  489  ls
+  490  c
+  491  s
+  492  co
+  493  exit
+  494  ls
+  495  pwd
+  496  cd
+  497  ls
+  498  exit
+  499  c
+  500  exit
+  501  e
+  502  e
+  503  c
+  504  smic
+  505  s
+  506  c
+  507  co
+  508  ls
+  509  cd
+  510  ls
+  511  cd program/
+  512  ls
+  513  cd utility/
+  514  ls
+  515  cd trj_analysis/
+  516  ls
+  517  cd ionicLiquid/
+  518  ls
+  519  cd ../../../
+  520  ls
+  521  cd ../
+  522  ls
+  523  cd work/
+  524  ls
+  525  cd ../
+  526  ls
+  527  cd util/
+  528  ls
+  529  cd trj_analysis/
+  530  ls
+  531  cd structure_factor/
+  532  ls
+  533  cd atomic_form_factors/
+  534  ls
+  535  vi write_form_factors.pl 
+  536  ls il_ua/
+  537  mkdir il_ringHpol
+  538  vi aff_param.dat 
+  539  vi write_form_factors.pl 
+  540  vi qpos.out 
+  541  vi write_form_factors.pl 
+  542  history
+  543  history >& test

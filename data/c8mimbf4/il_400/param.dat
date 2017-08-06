@@ -1,0 +1,27 @@
+[ xtcfiles ]
+1
+md_nvt.xtc
+[ topfile ]
+topol.dat
+[ msdfile ]
+msd.dat
+[ conductivity output file ]
+conductivity.dat
+[ rotational ACF file ]
+rotacf.dat
+[ rotational ACF P2 file ]
+rotacfp2.dat
+[ temp ]
+400
+[ grfile ]
+'gr.dat'
+[ gr_skip ]
+500
+[ gr_bins ]
+1000
+[ Sqfile ]
+'sq.dat'
+[ AFF_file_ext ]
+out
+[ AFF_file_dir ]
+'../../../aff_data'
