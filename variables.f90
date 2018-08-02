@@ -5,8 +5,10 @@
 
 MODULE variables
    real*8, parameter :: pi = 3.141592654
+   real*8, parameter :: kunit = 0.1
    integer, parameter :: MAX_FN=100, MAX_ANAME=5, MAX_N_ATOM=90000 ,  MAX_N_ATOM_TYPE=20
    integer, parameter :: MAX_Q_FORM = 1000
+   character*1, parameter :: creturn = achar(13)
    real*8  :: dq_form, dr_bins, sqRmax
    real*8 , dimension( max_q_form ) :: q_grid_form       ! array for list of k values
    real*8 , dimension( max_q_form ) :: form_mol          ! array for x_alp * f_alp(k)
@@ -14,7 +16,7 @@ MODULE variables
    real*8 , dimension( max_q_form ) :: sq, sq2, sqlorch, sqlorch2,sqtest           ! array for S(k)
 !   real*8 , dimension( max_q_form ) :: sinqr_over_qr
    real*8 , dimension(:,:), allocatable :: atomtype_form
-   real*8 , dimension(:,:), allocatable :: sinqr_over_qr, sqPart
+   real*8 , dimension(:,:), allocatable :: sinqr_over_qr, sqPart, sqPartDirect
 
    integer :: nskip,nskipgr     ! skip this number of trajectories between data points
    integer :: nbins     ! number of bins for g(r) and S(q) histograms

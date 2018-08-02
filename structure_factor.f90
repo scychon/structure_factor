@@ -300,7 +300,7 @@ program calc_xqCF_rotACF
       stop
     endif
 
-    OPEN (UNIT=6,FORM='FORMATTED',CARRIAGECONTROL='FORTRAN')
+    OPEN (UNIT=6,FORM='FORMATTED')
         ! Just an example to show what was read in
         write(6,'(a,f12.6,a,i0)') " Time (ps): ", trajin % time, "  Step: ", trajin % STEP
         write(6,'(a,f12.6,a,i0)') " Precision: ", trajin % prec, "  No. Atoms: ", trajin % NATOMS
@@ -487,8 +487,8 @@ program calc_xqCF_rotACF
 
         !call date_and_time(values=time_array_t)
         !write(6,*) 'time : ', time_array_t
-        write(6,100) ixtc,'th frame has finished  ' 
- 100    FORMAT('+', I7,A)  
+        write(6,100,advance='no') creturn, ixtc,'th frame has finished  ' 
+ 100    FORMAT(A, I8, A)  
 
         call trajin % read
  
@@ -681,9 +681,8 @@ program calc_xqCF_rotACF
       t1 = timestamp(i)
       unitNormMolt1(:,:) = unitNormMolTraj(i,:,:)
       !$OMP PARALLEL &
-      !$OMP   DEFAULT (FIRSTPRIVATE) &
-      !$OMP   SHARED (nDiffTime, rotACFTime, rotACFTimeP2,msdTime, &
-      !$OMP          xqcomCFTime, unitNormMolTraj,comtraj,comUnwrapTraj,xqcomTraj)
+      !$OMP PRIVATE(t2,dt,idt,comMolDiff,unitNormMolt2,idxmol,xqcomDiff, &
+      !$OMP         xqdiff1,k,idxmoltype,nmolcurr,xdiff,msd,rotacf)
       !$OMP DO
       do j=i+1,nxtc
         t2 = timestamp(j)
@@ -692,12 +691,14 @@ program calc_xqCF_rotACF
         if(idt .le. 0) then
           write(6,*) 'idt is less than 0', idt, t1, t2, dt
           cycle
+        elseif((idt .gt. 100) .and. (mod(idt,10) .ne. 0) ) then
+          cycle
+        elseif((idt .gt. 1000) .and. (mod(idt,100) .ne. 0) ) then
+          cycle
         endif
-        !comMolDiff(:,:) = comtraj(i,:,:)- comtraj(j,:,:)
         comMolDiff(:,:) = comUnwrapTraj(i,:,:)- comUnwrapTraj(j,:,:)
         unitNormMolt2(:,:) = unitNormMolTraj(j,:,:)
 
-     !   nACFTime(idt) = nACFTime(idt) + 1
         nDiffTime(idt) = nDiffTime(idt) + 1
 
         idxmol = 0
@@ -722,18 +723,11 @@ program calc_xqCF_rotACF
           xqdiff1(:) = xqdiff1(:) + xqcomDiff(k,:)
         enddo
 
-            xqcomCFTime(idt) = xqcomCFTime(idt) + dot_product(xqdiff1,xqdiff1)
-!        do k=1,nmolsys
-!          xqdiff1(:) = xqcomDiff(k,:)
-!          do l=1,nmolsys
-!            xqdiff2(:) = xqcomDiff(l,:)
-!          enddo
-!        enddo
-
+        xqcomCFTime(idt) = xqcomCFTime(idt) + dot_product(xqdiff1,xqdiff1)
       enddo
       !$OMP END DO
       !$OMP END PARALLEL
-      write(6,100) i,'th frame has finished  ' 
+      write(6,100,advance='no') i,'th frame has finished  ' 
     enddo
 
     call date_and_time(values=time_array_1)
@@ -748,18 +742,8 @@ program calc_xqCF_rotACF
 
     write(6,*) 'rotacf and xqdiff matrices generated'
     write(6,*) 'generating correlation function matrices'
-
-
-!    open(21,file='testout')
-!    do i=1,nmolsys
-!      xqdiff1(:) = xqcomTraj(1,i,:)-xqcomTraj(11,i,:)
-!      write(21,*) i, xqcomTraj(1,i,:),xqcomTraj(11,i,:),dot_product(xqdiff1,xqdiff1)
-!      write(21,*) i,unitNormMolTraj(1,i,:),unitNormMolTraj(2,i,:), dot_product(unitNormMolTraj(1,i,:),unitNormMolTraj(2,i,:))
-!    enddo
-
     write(6,*) 'data analysis done'
     
-
     write(6,*) 'start generating output files'
 
     call backupfile(strMSDFile)
@@ -771,7 +755,6 @@ program calc_xqCF_rotACF
     open(20,file=strRotACFFile)
     open(21,file=strRotACFP2File)
 
-!    xqAtomsCFTime = xqAtomsCFTime*multiConduct
     xqcomCFTime = xqcomCFTime*multiConduct
 
 
