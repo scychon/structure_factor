@@ -728,7 +728,7 @@ program calc_xqCF_rotACF
       enddo
       !$OMP END DO
       !$OMP END PARALLEL
-      write(6,100,advance='no') i,'th frame has finished  ' 
+      write(6,100,advance='no') creturn, i,'th frame has finished  ' 
     enddo
 
     call date_and_time(values=time_array_1)
