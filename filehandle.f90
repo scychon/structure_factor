@@ -11,6 +11,31 @@ MODUlE filehandle
 contains
 
     ! Subroutine to get command arguments and assign input and output file name
+    subroutine checkargs
+        use variables
+        implicit none
+
+        integer            :: narg, cptArg       !#of arg & counter of arg
+        character(len=256)         :: str
+        character(len=256),allocatable,dimension(:) :: aStrArgs
+        narg=command_argument_count()
+        !Loop over the arguments
+        if(narg>0)then
+          !loop across options
+          allocate(aStrArgs(narg))
+          do cptArg=1,narg
+            call get_command_argument(cptArg,str)
+            aStrArgs(cptArg) = str
+          enddo
+          !assign in and out files
+          call getargs(aStrArgs)
+        else
+          write(6,*) 'no arguments are given'
+          write(6,*) 'usage : calc_qq_struct_omp -f param.dat'
+          stop
+        endif
+    end subroutine checkargs
+
     subroutine getargs ( aStrArgs )
         use variables
         implicit none
@@ -83,7 +108,7 @@ contains
     subroutine readparam
         use variables
         implicit none
-        integer :: ifile,iline, ISTAT, idx
+        integer :: ifile,iline, ISTAT, idx, nqgridval
         character(len=256)         :: str, line, strhead
 
         strTopFile = ""
@@ -117,8 +142,16 @@ contains
               read(7,*) nxtcfile
               write(*,*) nxtcfile
               allocate(strXtcfiles(nxtcfile))
+              allocate(nXtcFrames(nxtcfile))
+              nXtcFrames = 0
               do ifile=1,nxtcfile
-                read(7,'(A)') strXtcfiles(ifile)
+                read(7,'(A)') line
+                str = trim(adjustl(line))
+                if (index(str, ' ')>0) then
+                    strXtcfiles(ifile) = trim(adjustl(str(:index(str,' '))))
+                    str = trim(adjustl(str(index(str,' '):)))
+                    if(len(trim(adjustl(str)))>0) read(str,*) nXtcFrames(ifile)
+                endif
                 write(*,*) trim(strXtcfiles(ifile))
               enddo
             case ('topfile')
@@ -166,6 +199,19 @@ contains
             case ('AFF_file_ext')
               read(7, *) strAFFExt
               write(*,*) strAFFExt
+            case ('grCOM')
+              read(7, *) bGrCOM
+              write(*,*) bGrCOM
+            case ('calcGr')
+              read(7, *) bCalcGr
+              write(*,*) bCalcGr
+            case ('calcSq')
+              read(7, *) bCalcSq
+              write(*,*) bCalcSq
+            case ('nqgrid')
+              read(7, *) nqgridval
+              write(*,*) nqgridval
+              nqgrid = nqgridval
           end select
           read(7, '(A)',IOSTAT=ISTAT) line   ! search for header line
         enddo

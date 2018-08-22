@@ -7,6 +7,10 @@
 MODUlE fvector
     implicit none
  
+    interface shrink2D
+        module procedure shrink2Dint, shrink2Ddouble
+    end interface shrink2D
+
 contains
 
     ! Subroutines to expand the size of allocatable arrays
@@ -82,7 +86,21 @@ contains
         deallocate(temp)
     end subroutine shrink1D
 
-    subroutine shrink2D ( array, nsize1, nsize2 )
+    subroutine shrink2Dint ( array, nsize1, nsize2 )
+        implicit none
+        integer(8), intent(in) :: nsize1, nsize2
+        integer, intent(inout), allocatable, dimension(:,:) :: array
+        integer, allocatable, dimension(:,:) :: temp
+        
+        allocate(temp(nsize1,nsize2))
+        temp=array(:nsize1,:nsize2)
+        deallocate(array)
+        allocate(array(nsize1,nsize2))
+        array=temp
+        deallocate(temp)
+    end subroutine shrink2Dint
+
+    subroutine shrink2Ddouble ( array, nsize1, nsize2 )
         implicit none
         integer, intent(in) :: nsize1, nsize2
         real*8, intent(inout), allocatable, dimension(:,:) :: array
@@ -94,7 +112,7 @@ contains
         allocate(array(nsize1,nsize2))
         array=temp
         deallocate(temp)
-    end subroutine shrink2D
+    end subroutine shrink2Ddouble
 
     subroutine shrink3D ( array, nsize1, nsize2, nsize3 )
         implicit none

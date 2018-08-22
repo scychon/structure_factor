@@ -69,6 +69,8 @@ contains
         logical :: bNewAtomType, bDrude
  
         inquire(file=trim(filename_in),exist=ex)
+        write(6,'(A,A)') 'reading topology file ',trim(filename_in)
+        write(6,*) ''
  
         if (ex .eqv. .false.) then
             write(0,*)

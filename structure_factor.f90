@@ -310,6 +310,10 @@ program calc_xqCF_rotACF
                             trajin % box(2,1), trajin % box(2,3), &
                             trajin % box(3,1), trajin % box(3,2)
         write(6,*) '' 
+
+    !$OMP PARALLEL &
+    !$OMP   DEFAULT (FIRSTPRIVATE) &
+    !$OMP   SHARED (unitNormMolTraj, comtraj, mutraj)
     do while ( trajin % STAT == 0 )
         ixtc = ixtc + 1
         volume = trajin % box(1,1) * trajin % box(2,2) * trajin % box(3,3)
