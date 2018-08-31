@@ -208,7 +208,7 @@ program calc_xqCF_rotACF
   endif
   allocate(grsum(nattypepairs+1,nbins))
   grsum = 0.d0
-  allocate(sqsum(nqgrid(1)*nqgrid(2)*nqgrid(3)))
+  allocate(sqsum(3*nqgrid(1)*nqgrid(2)*nqgrid(3)))
   sqsum = 0.d0
   dkavg = 0.d0
   allocate(sqPart(max_q_form,nattypepairs))
@@ -484,14 +484,16 @@ program calc_xqCF_rotACF
             i=idx/nqgrid(1)
             j=mod(idx,nqgrid(1))/nqgrid(2)
             k=mod(mod(idx,nqgrid(1)),nqgrid(2))
-            kval = norm((/ dkavg(1)*i, dkavg(2)*j, dkavg(3)*k /))
-            idxcnt = int(kval/dkval + 0.5d0)
-            if(idxcnt < size(sqavg)) then
-                sqavg(idxcnt) = sqavg(idxcnt) + sqsum(idx)
-                sqcnt(idxcnt) = sqcnt(idxcnt) + 1
-            endif
-            write(17,'(F12.3,5ES15.7)') kval, sqsum(idx), sqsum(idx)/kval/kval, sqsum(idx)*mult2/kval/kval
-            if ( k .eq. 1) write(6,'(F12.3,ES15.7)') kval, sqsum(idx)*mult2/kval/kval
+            do l=1,3
+                kval = norm((/ dkavg(l)*i, dkavg(mod(l,3)+1)*j, dkavg(mod(l+1,3)+1)*k /))
+                idxcnt = int(kval/dkval + 0.5d0)
+                if(idxcnt < size(sqavg)) then
+                    sqavg(idxcnt) = sqavg(idxcnt) + sqsum(idx)
+                    sqcnt(idxcnt) = sqcnt(idxcnt) + 1
+                endif
+                write(17,'(F12.3,6ES15.7)') kval, sqsum((idx-1)*3+l), sqsum((idx-1)*3+l)/kval/kval, sqsum((idx-1)*3+l)*mult2/kval/kval, kval*kval/mult2/sqsum((idx-1)*3+l)
+            enddo
+            if ( k .eq. 1) write(6,'(F12.3,ES15.7)') kval, sqsum(idx*3)*mult2/kval/kval
         enddo
         close(17)
         strFileName = trim(adjustl(strSqFile)) // '_avg'

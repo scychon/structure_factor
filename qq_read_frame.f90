@@ -363,7 +363,7 @@ contains
     real*8, intent(inout) :: sqsum(:)
 
     integer :: i,j,k,idx,nqtot
-    real*8  :: sumval
+    real*8  :: sumval,sumval2,sumval3
     real*8,dimension(3)    :: kvec   ! temporary position difference vector for dx
 
     nqtot = nqgrid(1)*nqgrid(2)*nqgrid(3)
@@ -373,8 +373,19 @@ contains
         k=mod(mod(idx,nqgrid(1)),nqgrid(2))
         kvec = (/ dk(1)*i, dk(2)*j, dk(3)*k /)
         call get_sq_frame_kvec(xposframe,scaleParticles,kvec,sumval)
+        if ((i==j) .and. (j==k)) then
+            sumval2 = sumval
+            sumval3 = sumval
+        else
+            kvec = (/ dk(1)*k, dk(2)*i, dk(3)*j /)
+            call get_sq_frame_kvec(xposframe,scaleParticles,kvec,sumval2)
+            kvec = (/ dk(1)*j, dk(2)*k, dk(3)*i /)
+            call get_sq_frame_kvec(xposframe,scaleParticles,kvec,sumval3)
+        endif
         !$OMP CRITICAL
-        sqsum(idx) = sqsum(idx) + sumval
+        sqsum(idx*3-2) = sqsum(idx*3-2) + sumval
+        sqsum(idx*3-1) = sqsum(idx*3-2) + sumval2
+        sqsum(idx*3) = sqsum(idx*3) + sumval3
         !$OMP END CRITICAL
     enddo
   end subroutine get_sq_frame
